@@ -1,0 +1,24 @@
+<div class="w-full h-full flex flex-col">
+  <div class="flex justify-end gap-2 px-4 py-2 bg-gray-200 rounded-t-lg">
+    <button
+      class="px-4 py-1 rounded-l-full rounded-r-full text-sm bg-blue-600 text-white disabled:bg-blue-300"
+      (click)="onValidate()"
+      [disabled]="isLoading"
+    >
+      {{ isLoading ? "Validating…" : "Validate JSON" }}
+    </button>
+
+    <button
+      class="px-4 py-1 rounded-l-full rounded-r-full text-sm bg-gray-600 text-white rounded"
+      (click)="onClear()"
+      [disabled]="isLoading"
+    >
+      Clear
+    </button>
+  </div>
+  <textarea
+    [(ngModel)]="jsonText"
+    placeholder="Paste your JSON here..."
+    class="w-full h-full outline-none p-4 font-mono text-sm border rounded-b-lg"
+  ></textarea>
+</div>

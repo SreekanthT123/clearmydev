@@ -1,7 +1,22 @@
-import { Component } from "@angular/core";
+import { Component, inject } from '@angular/core';
+import { ExplainIncidentService } from './incident.service';
+import { IncidentInputComponent } from './components/incident-input/incident-input.component';
+import { IncidentOutputComponent } from './components/incident-output/incident-output.component';
+import { IncidentStore } from './incident.store';
 
 @Component({
   standalone: true,
-  template: `<h2>Incident</h2><p>Coming soon</p>`
+  templateUrl: './incident.page.html',
+  imports: [IncidentInputComponent, IncidentOutputComponent],
+  providers:[IncidentStore,ExplainIncidentService]
 })
-export class IncidentPage {}
+export class IncidentPage {
+  incidentStore= inject(IncidentStore);
+  isLoading= this.incidentStore.loading;
+  explanation = this.incidentStore.result;
+  errormessage = this.incidentStore.error;
+  onSubmit(data: any) {
+    console.log("dataaa",data)
+   this.incidentStore.explainIncident(data);
+  }
+}

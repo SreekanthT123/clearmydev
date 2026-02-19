@@ -1,0 +1,61 @@
+<div class="w-full h-full flex flex-col">
+  <div class="flex justify-between gap-2 px-4 py-2 bg-gray-200 rounded-t-lg">
+    <div class="flex justify-start items-center gap-2">
+      <div class="hidden lg:block">Select Context:</div>
+      <div class="relative w-56 context-select">
+        <button
+          type="button"
+          class="w-full rounded-md bg-white py-2 pl-3 pr-10 text-left text-sm shadow-sm ring-1 ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 buttonStyle"
+          (click)="toggle()"
+        >
+          <span class="block truncate">{{ selectedContext }}</span>
+          <span
+            class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400"
+          >
+            ▼
+          </span>
+        </button>
+
+        <ul
+          *ngIf="isOpen"
+          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black/5"
+        >
+          <li
+            *ngFor="let fw of contexts"
+            (click)="selectContext(fw)"
+            class="cursor-pointer px-3 py-2 hover:bg-indigo-600 hover:text-white"
+            [class.font-semibold]="fw === selectedContext"
+          >
+            {{ fw }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button
+      (click)="onSubmit()"
+      [disabled]="!beforetext.trim()|| !aftertext.trim() || isLoading || !isValid"
+      class="px-4 rounded-l-full rounded-r-full text-sm bg-blue-600 text-white disabled:bg-blue-300 buttonStyle disabled:cursor-not-allowed"
+    >
+      Explain Difference
+    </button>
+  </div>
+  @if (!isValid && beforetext && aftertext) {
+  <div class="text-xs text-red-500 py-2 text-right">
+    Data exceeds limit(>10k chars)
+  </div>
+  }
+  <textarea
+    [disabled]="isLoading"
+    rows="10"
+    class="w-full h-full outline-none p-4 font-mono text-sm border"
+    placeholder="Paste before text here..."
+    [(ngModel)]="beforetext"
+  ></textarea>
+  <textarea
+    [disabled]="isLoading"
+    rows="10"
+    class="w-full h-full outline-none p-4 font-mono text-sm border rounded-b-lg mt-2"
+    placeholder="Paste after text here..."
+    [(ngModel)]="aftertext"
+  ></textarea>
+</div>

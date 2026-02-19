@@ -1,9 +1,206 @@
-<h2 class="font-semibold mb-4">ClearMyDev</h2>
-
-<ul class="space-y-2">
-  <li><a routerLink="/json">JSON</a></li>
-  <li><a routerLink="/errors">Errors</a></li>
-  <li><a routerLink="/logs">Logs</a></li>
-  <li><a routerLink="/diffs">Diffs</a></li>
-  <li><a routerLink="/incidents">Incidents</a></li>
-</ul>
+<div class="h-[100vh] w-full">
+  <div class="flex items-center px-8 w-full justify-between">
+    <!-- <div>Powered By ADYSAS</div> -->
+    <div class="flex items-center gap-4 justify-start py-8 w-[40%]">
+      <div><img src="logo1.svg" alt="" width="100" /></div>
+      <div>
+        <h1 class="text-7xl font-semibold text-gray-900">
+          ClearMy<span class="text-[#F5702F]">Dev</span>
+        </h1>
+        <div class="text-xl pl-2 text-[#329253]">
+          Lorem ipsum dolor sit amet consectetur
+        </div>
+      </div>
+    </div>
+    <div class="w-[60%] py-8">
+      <div class="flex gap-4 items-center justify-end w-full pb-4">
+        <button
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Docs
+        </button>
+        <button
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Pricing
+        </button>
+        <button
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          About Us
+        </button>
+        <div *ngIf="usage.usage() as u" class="text-xs text-gray-600 mt-1">
+          Requests left today:
+          <span class="font-bold text-orange-600">{{ u.remaining }}</span> / {{ u.limit }}
+        </div>
+        @if (!auth.isLoggedIn()) {
+          <button
+            routerLink="/login"
+            class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+          >
+            Login
+          </button>
+        } @else {
+          |
+          <button
+            class="p-1 buttonStyle rounded-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+          >
+            👨🏻
+          </button>
+          <div class="flex flex-col justify-start items-start">
+            <div class="text-sm">
+              {{ auth.userProfile()?.name }}
+            </div>
+            <div class="text-xs">
+              {{ auth.userProfile()?.email }}
+            </div>
+          </div>
+        }
+      </div>
+      <!-- <div class="">
+        <div class="bg-gray-700 p-4 flex gap-2 rounded-t-xl">
+          <div class="p-2 rounded-full bg-green-500"></div>
+          <div class="p-2 rounded-full bg-orange-500"></div>
+          <div class="p-2 rounded-full bg-red-500"></div>
+        </div>
+        <div
+          class="border-2 border-gray-700 bg-orange-50 h-96 rounded-b-xl"
+        >
+      </div>
+    </div> -->
+      <app-carousel></app-carousel>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-8 p-8 mt-8">
+    <div
+      class="relative px-4 py-3 bubble text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+    >
+      FixMy<span class="text-[#F5702F]">JSON</span>
+      <div class="flex justify-start items-center">
+        <div class="text-xl text-gray-600 mt-1">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+          minima eos iure earum accusamus ut, quidem vel quasi cumque aspernatur
+          corporis qui, exercitationem officia fugit placeat ipsum cupiditate!
+          Sequi, enim!
+        </div>
+      </div>
+      <div class="flex justify-end items-center py-4">
+        <button
+          (click)="tryFeature('/json')"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try it out!
+        </button>
+      </div>
+    </div>
+    <div
+      class="relative px-4 py-3 bubble text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+    >
+      ExplainMy<span class="text-[#F5702F]">Errors</span>
+      <div class="flex justify-start items-center gap-2">
+        <div class="text-xl text-gray-600 mt-1">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+          minima eos iure earum accusamus ut, quidem vel quasi cumque aspernatur
+          corporis qui, exercitationem officia fugit placeat ipsum cupiditate!
+          Sequi, enim!
+        </div>
+      </div>
+      <div class="flex justify-between items-center py-4">
+        <button
+          routerLink="/errors"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Details
+        </button>
+        <button
+          routerLink="/errors"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try it out!
+        </button>
+      </div>
+    </div>
+    <div
+      class="relative px-4 py-3 bubble text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+    >
+      ExplainMy<span class="text-[#F5702F]">Logs</span>
+      <div class="flex justify-start items-center gap-2">
+        <div class="text-xl text-gray-600 mt-1">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+          minima eos iure earum accusamus ut, quidem vel quasi cumque aspernatur
+          corporis qui, exercitationem officia fugit placeat ipsum cupiditate!
+          Sequi, enim!
+        </div>
+      </div>
+      <div class="flex justify-end items-center py-4">
+        <button
+          routerLink="/logs"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try it out!
+        </button>
+      </div>
+    </div>
+    <div
+      class="relative px-4 py-3 bubble text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+    >
+      ExplainMy<span class="text-[#F5702F]">Diff</span>
+      <!-- <span
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="40px"
+          viewBox="0 -960 960 960"
+          width="40px"
+          fill="currentColor"
+        >
+          <path
+            d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"
+          /></svg
+      ></span> -->
+      <div class="flex justify-start items-center gap-2">
+        <div class="text-xl text-gray-600 mt-1">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+          minima eos iure earum accusamus ut, quidem vel quasi cumque aspernatur
+          corporis qui, exercitationem officia fugit placeat ipsum cupiditate!
+          Sequi, enim!
+        </div>
+      </div>
+      <div class="flex justify-end items-center py-4">
+        <button
+          routerLink="/diffs"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try it out!
+        </button>
+      </div>
+    </div>
+    <div
+      class="relative px-4 py-3 bubble text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+    >
+      ExplainMy<span class="text-[#F5702F]">Incident</span>
+      <div class="flex justify-start items-center gap-2">
+        <div class="text-xl text-gray-600 mt-1">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus
+          minima eos iure earum accusamus ut, quidem vel quasi cumque aspernatur
+          corporis qui, exercitationem officia fugit placeat ipsum cupiditate!
+          Sequi, enim!
+        </div>
+      </div>
+      <div class="flex justify-end items-center py-4">
+        <button
+          routerLink="/incidents"
+          class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try it out!
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <ul class="space-y-2">
+      <li><a routerLink="/json">JSON</a></li>
+      <li><a routerLink="/errors">Errors</a></li>
+      <li><a routerLink="/logs">Logs</a></li>
+      <li><a routerLink="/diffs">Diffs</a></li>
+      <li><a routerLink="/incidents">Incidents</a></li>
+    </ul> -->
+</div>

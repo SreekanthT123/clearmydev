@@ -1,0 +1,87 @@
+<div class="w-full h-full flex flex-col">
+  <div class="flex justify-end gap-2 px-4 py-2 bg-gray-200 rounded-t-lg">
+    <span *ngIf="aiFixCount >= MAX_AI_FIXES" class="text-xs text-red-600 ml-2">
+      AI fix limit reached for this session.
+    </span>
+    <button
+      [disabled]="
+        !result ||
+        result.valid ||
+        isFixing ||
+        aiResult?.fixed ||
+        aiFixCount >= MAX_AI_FIXES
+      "
+      class="px-4 py-1 rounded-l-full rounded-r-full text-sm text-white bg-[#329253] disabled:bg-[#48BF71] disabled:cursor-not-allowed"
+      (click)="onFixWithAI()"
+    >
+      {{ isFixing ? "Fixing..." : "Fix with AI" }}
+    </button>
+    <button
+      [disabled]="!(aiResult?.fixed || result?.formatted)"
+      class="px-4 py-1 rounded-l-full rounded-r-full text-sm bg-gray-700 text-white hover:bg-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+      (click)="copyToClipboard(aiResult?.fixed || result?.formatted)"
+    >
+      {{ copied ? "Copied!" : "Copy JSON" }}
+    </button>
+  </div>
+  <div
+    class="w-full h-full border rounded-b-lg p-4 font-mono text-sm overflow-auto"
+  >
+    <!-- Neutral state -->
+    <div *ngIf="!result && !aiResult" class="text-gray-400">
+      Paste JSON on the left and click <b>Validate JSON</b>.
+    </div>
+
+    <!-- AI result - highest priority -->
+    <div *ngIf="aiResult?.fixed">
+      <div class="mb-2 text-blue-600 font-semibold">🤖 AI-Fixed JSON</div>
+      <pre
+        class="bg-gray-900 text-blue-200 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
+        >{{ aiResult.fixed }}
+    </pre
+      >
+      <div class="mt-2 text-gray-600 text-sm">
+        {{ aiResult.explanation }}
+      </div>
+    </div>
+
+    <!-- AI Error (SECOND PRIORITY) -->
+    <div *ngIf="aiResult?.error">
+      <div class="mb-2 text-red-600 font-semibold">🤖 AI Fix Failed</div>
+
+      <div class="text-red-700 whitespace-pre-wrap">
+        {{ aiResult.error }}
+      </div>
+
+      <div class="mt-2 text-gray-500 text-xs">
+        You can edit the JSON and try again.
+      </div>
+    </div>
+
+    <!-- Validation rsult - only if ai output is empty -->
+    <ng-container *ngIf="!aiResult && result">
+      <!-- If JSON is valid -->
+      <div *ngIf="result?.valid">
+        <div class="mb-2 text-green-600 font-semibold">✅ Valid JSON</div>
+        <pre
+          class="bg-gray-900 text-green-200 p-4 rounded text-sm overflow-auto whitespace-pre-wrap"
+          >{{ result.formatted }}
+      </pre
+        >
+      </div>
+      <!-- If JSON is invalid -->
+      <div *ngIf="result && !result.valid">
+        <div class="mb-2 text-red-600 font-semibold">❌ Invalid JSON</div>
+        <div class="mt-1 text-gray-500 text-xs">
+          This usually happens due to missing quotes, commas, or extra
+          characters.
+        </div>
+        <div
+          class="text-red-700 whitespace-pre-wrap bg-red-50 rounded-lg p-4 mt-1"
+        >
+          {{ result.error }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

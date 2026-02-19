@@ -1,0 +1,25 @@
+<div class="w-screen flex justify-start items-center gap-2 px-4 h-[48px]">
+  <div>
+    <img  src="logo1.svg" alt="">
+  </div>
+  <div>
+    <div class="text-base font-semibold">FixMy<span class="text-[#F5702F]">JSON</span></div>
+    <div class="text-xs">Validate, format, and fix broken <span class="text-[#329253]">JSON</span> instantly</div>
+  </div>
+</div>
+<div class="h-[calc(100vh-48px)] w-screen flex">
+  <div class="w-1/2 border-r p-4">
+    <app-input-editor-section
+      (validateJson)="onJsonValidate($event)"
+      (reset)="reset()"
+    ></app-input-editor-section>
+  </div>
+  <div class="w-1/2 border-r p-4">
+    <app-output-viewer-section
+      [validationResult]="validationResult()"
+      [aiResult]="aiResult()"
+      (onFixWithAiEmitter)="onFixWithAi()"
+      
+    ></app-output-viewer-section>
+  </div>
+</div>
