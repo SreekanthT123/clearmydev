@@ -1,0 +1,122 @@
+<div
+  class="text-xl px-8 py-4 mt-4 flex justify-start items-center gap-2 max-w-7xl w-full mx-auto"
+>
+  <span><img src="4.svg" width="40" alt="" /></span> Lets have a look at the
+  tools
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 max-w-7xl w-full mx-auto">
+  <div
+    class="relative px-4 py-3 bubble text-2xl lg:text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+  >
+    ExplainMy<span class="text-[#F5702F]">Error</span>
+    <div class="flex justify-start items-center gap-2">
+      <div class="text-lg text-gray-600 mt-4">
+        Paste any programming error or stack trace and ExplainMyError explains
+        what it actually means. It identifies the most likely cause, what you
+        should check first, and the common mistake developers make with that
+        error. Ideal when documentation is unclear and searching online only
+        adds confusion.
+      </div>
+    </div>
+    <div class="flex justify-end items-center py-4">
+      <!-- <button
+        routerLink="/errors"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Details
+      </button> -->
+      <button
+        (click)="tryFeature('/errors')"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Try it out!
+      </button>
+    </div>
+  </div>
+  <div
+    class="relative px-4 py-3 bubble text-2xl lg:text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+  >
+    ExplainMy<span class="text-[#F5702F]">Log</span>
+    <div class="flex justify-start items-center gap-2">
+      <div class="text-lg text-gray-600 mt-4">
+        Large logs are overwhelming. ExplainMyLog reads raw application or
+        server logs and summarizes what is happening. It detects suspicious
+        patterns, failures, and warnings, and tells you where to focus your
+        attention instead of scanning hundreds of lines manually.
+      </div>
+    </div>
+    <div class="flex justify-end items-center py-4">
+      <button
+        (click)="tryFeature('/logs')"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Try it out!
+      </button>
+    </div>
+  </div>
+  <div
+    class="relative px-4 py-3 bubble text-2xl lg:text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+  >
+    ExplainMy<span class="text-[#F5702F]">Diff</span>
+
+    <div class="flex justify-start items-center gap-2">
+      <div class="text-lg text-gray-600 mt-4">
+        Code changes can introduce subtle problems. Provide a before and after
+        configuration or code change, and ExplainMyDiff highlights the
+        meaningful differences, possible risks, and what should be verified.
+        Useful for debugging after deployments, reviewing PRs, or checking
+        configuration updates.
+      </div>
+    </div>
+    <div class="flex justify-end items-center py-4">
+      <button
+        (click)="tryFeature('/diffs')"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Try it out!
+      </button>
+    </div>
+  </div>
+  <div
+    class="relative px-4 py-3 bubble text-2xl lg:text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+  >
+    ExplainMy<span class="text-[#F5702F]">Incident</span>
+    <div class="flex justify-start items-center gap-2 mt-4">
+      <div class="text-lg text-gray-600">
+        When something breaks in production, you often have partial information.
+        Describe the incident, paste logs or errors, and ExplainMyIncident gives
+        a likely cause, impact, and next step to investigate. It helps you
+        quickly orient yourself before deep debugging begins.
+      </div>
+    </div>
+    <div class="flex justify-end items-center py-4">
+      <button
+        (click)="tryFeature('/incidents')"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Try it out!
+      </button>
+    </div>
+  </div>
+  <div
+    class="relative px-4 py-3 bubble text-2xl lg:text-5xl w-full mx-auto text-black rounded-br-3xl transition duration-300 ease-in-out hover:scale-105 hover:bg-orange-50"
+  >
+    FixMy<span class="text-[#F5702F]">JSON</span>
+    <div class="flex justify-start items-center">
+      <div class="text-lg text-gray-600 mt-4">
+        Paste malformed JSON and FixMyJSON validates and corrects it. It formats
+        the structure, identifies syntax issues, and explains what was wrong.
+        Especially useful when working with APIs, configs, or payloads where a
+        small formatting mistake breaks the entire request.
+      </div>
+    </div>
+    <div class="flex justify-end items-center py-4">
+      <button
+        (click)="tryFeature('/json')"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base bg-blue-600 text-white disabled:bg-blue-300 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Try it out!
+      </button>
+    </div>
+  </div>
+</div>

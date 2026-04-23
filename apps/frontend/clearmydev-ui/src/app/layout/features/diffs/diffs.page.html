@@ -1,19 +1,5 @@
-<div class="w-screen flex justify-start items-center gap-2 px-4 h-[48px]">
-  <div>
-    <img src="logo1.svg" alt="" />
-  </div>
-  <div>
-    <div class="text-base font-semibold">
-      ExplainMy<span class="text-[#F5702F]">Diff</span>
-    </div>
-    <div class="text-xs">
-      <!-- Understand noisy<span class="text-[#329253]"> application logs</span> quickly. -->
-      Understand what actually <span class="text-[#329253]">changed</span> and
-      what <span class="text-[#329253]">matters</span>.
-    </div>
-  </div>
-</div>
-<div class="h-[calc(100vh-48px)] w-screen flex flex-col lg:flex-row">
+
+<div class="h-[calc(100vh-80px)] w-screen flex flex-col lg:flex-row">
   <div class="w-full lg:w-1/2 border-r p-4">
     <app-diff-input
       (submitDiff)="onSubmit($event)"

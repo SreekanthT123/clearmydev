@@ -23,7 +23,7 @@ export async function runAI({ systemPrompt, userPrompt, userId }) {
   //   }
 
   try {
-    console.log("inside executor");
+    console.log("inside executor**************");
 
     const client = getOpenAICLient();
 

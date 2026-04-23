@@ -46,6 +46,9 @@
       <div *ngIf="explanation.mistake" class="bg-orange-50 p-4 rounded-lg mb-2">
         <b>Often caused by:</b> {{ explanation.mistake }}
       </div>
+      <div *ngIf="explanation.example_error" class="bg-green-50 p-4 rounded-lg mb-2">
+        <b>Example error:</b> {{ explanation.example_error }}
+      </div>
     </div>
   </div>
 </div>

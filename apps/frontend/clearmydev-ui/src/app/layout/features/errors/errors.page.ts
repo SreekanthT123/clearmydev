@@ -4,6 +4,7 @@ import { ExplanationOutputComponent } from './components/explanation-output/expl
 import { ExplainService } from './error.service';
 import { Explanation } from './error.model';
 import { ErrorStore } from './error.store';
+import { LayoutStore } from '../../layout/layout-store/layout.store';
 
 @Component({
   standalone: true,
@@ -16,8 +17,11 @@ export class ErrorsPage {
   isLoading = this.errorStore.loading;
   explanation = this.errorStore.result;
   errormessage = this.errorStore.error;
-
-  constructor(private explainService: ExplainService) {}
+layoutStore = inject(LayoutStore);
+  constructor(private explainService: ExplainService) {
+    this.layoutStore.setShowAppDropdown(true);
+    this.layoutStore.setShowButtons(false);
+  }
 
   onExplain(payload: { errorText: string; framework: string }) {
     this.errorStore.explain(payload.errorText, payload.framework);
@@ -39,5 +43,10 @@ export class ErrorsPage {
     //       this.isLoading = false;
     //     },
     //   });
+  }
+
+  ngOnDestroy(){
+    this.layoutStore.setShowAppDropdown(false);
+    this.layoutStore.setShowButtons(true)
   }
 }

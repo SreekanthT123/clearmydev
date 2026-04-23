@@ -44,11 +44,34 @@
     Data exceeds limit(>10k chars)
   </div>
   }
+  <!-- give multi line placeholder with text and an exaple of error -->
   <textarea
     [disabled]="isLoading"
-    rows="10"
+    rows="20"
     class="w-full outline-none p-4 font-mono text-sm border"
-    placeholder="Enter the incident description here..."
+    placeholder="Enter the incident description here...
+    
+    For example:
+    An unexpected error occurred while processing the request. 
+    The server returned a 500 Internal Server Error. 
+    The issue seems to be related to a null pointer exception in the user authentication module. 
+    This incident has been occurring intermittently and has affected multiple users.
+    Steps to reproduce:
+    1. Log in to the application.
+    2. Navigate to the dashboard.
+    3. Click on the 'Generate Report' button.
+    4. Observe the error message displayed.
+    Expected behavior:
+    The report should be generated successfully without any errors.
+    Actual behavior:
+    An error message is displayed, and the report generation fails.
+    Additional information:
+    - The issue started occurring after the recent deployment of version 2.1.0.
+    - The error logs indicate a null pointer exception in the authentication module.
+    - The issue has been reported by multiple users across different browsers and platforms.
+    - The incident has been temporarily mitigated by restarting the server, but it recurs after some time.
+    - The development team is currently investigating the root cause of the issue and working on a permanent fix.
+    "
     [(ngModel)]="incidentText"
   ></textarea>
   <div class="flex justify-start gap-4 w-full py-2">

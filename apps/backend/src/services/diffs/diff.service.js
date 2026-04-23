@@ -1,7 +1,7 @@
 import { runAI } from "../ai/ai.executor.js";
 import { SYSTEM_PROMPT } from "./diff.prompt.js";
 
-export async function explainDiff(before, after, context,userId) {
+export async function explainDiff(before, after, context, userId) {
   //   const client = getOpenAIClient();
 
   const userPrompt = `
@@ -29,7 +29,7 @@ export async function explainDiff(before, after, context,userId) {
     const parsed = await runAI({
       systemPrompt: SYSTEM_PROMPT,
       userPrompt,
-      userId
+      userId,
     });
     return {
       summary: String(parsed.summary || ""),

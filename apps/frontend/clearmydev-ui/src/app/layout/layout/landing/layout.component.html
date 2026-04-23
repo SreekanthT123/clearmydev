@@ -1,0 +1,15 @@
+<div class="w-full mb-20">
+  <!-- hero section -->
+  <app-app-hero-section (tryTool)="scrollToTools()">
+    <app-carousel appcarousal></app-carousel>
+  </app-app-hero-section>
+  <!-- description -->
+  <app-app-description></app-app-description>
+  <!-- tool list -->
+   <div id="tools-section">
+     <app-tools-list (tryfeautreEmitter)="tryFeature($event)"></app-tools-list>
+   </div>
+</div>
+<!-- footer -->
+<app-footer-landing-page></app-footer-landing-page>
+<app-custom-toast></app-custom-toast>

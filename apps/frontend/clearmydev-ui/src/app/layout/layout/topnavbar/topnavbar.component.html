@@ -1,0 +1,201 @@
+<div
+  class="w-full flex items-center justify-between px-8 py-4 z-50 sticky top-0 bg-white"
+>
+  <div class="flex justify-start items-center gap-4">
+    <div
+      routerLink="/landing"
+      class="flex items-center gap-2 justify-start logo cursor-pointer"
+      [class.logo-visible]="showLogoAlways()"
+    >
+      <div><img src="logo1.svg" alt="" width="50" /></div>
+      <div>
+        <h1 class="text-xl font-semibold text-gray-900">
+          ClearMy<span class="text-[#F5702F]">Dev</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="hidden lg:flex gap-4 items-center justify-end w-full">
+    @if (showAppDrpdown()) {
+      <div class="relative w-56 framework-select">
+        <button
+          type="button"
+          class="w-full rounded-md bg-white py-2 pl-3 pr-10 text-left text-sm shadow-sm ring-1 ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 buttonStyle"
+          (click)="toggleapplist()"
+        >
+          <span class="block truncate">{{ selectedApp.displayValue }}</span>
+          <span
+            class="absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400"
+          >
+            ▼
+          </span>
+        </button>
+
+        <ul
+          *ngIf="isApplistOpen"
+          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black/5"
+        >
+          <li
+            *ngFor="let fw of applist"
+            (click)="selectApp(fw)"
+            class="cursor-pointer px-3 py-2 hover:bg-indigo-600 hover:text-white"
+            [class.font-semibold]="fw === selectedApp"
+          >
+            {{ fw.displayValue }}
+          </li>
+        </ul>
+      </div>
+    }
+    <div
+      *ngIf="auth.userToken() && usage.usage() as u"
+      class="text-xs text-gray-600 mt-1"
+    >
+      Requests left today:
+      <span class="font-bold text-orange-600">{{ u.remaining }}</span> /
+      {{ u.limit }} (free tier)
+    </div>
+    <button
+      class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 bg-orange-500 text-white"
+    >
+      Upgrade
+    </button>
+    @if (showButtons()) {
+      <button
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Docs
+      </button>
+      <button
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+      >
+        Pricing
+      </button>
+    }
+    <!-- <button
+      class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+    >
+      About Us
+    </button> -->
+
+    @if (!auth.isLoggedIn() && !auth.userLoggingOut()) {
+      <button
+        (click)="login()"
+        class="px-4 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 flex justify-center items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+          width="24px"
+          height="24px"
+        >
+          <path
+            fill="#FFC107"
+            d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+          />
+          <path
+            fill="#FF3D00"
+            d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+          />
+          <path
+            fill="#4CAF50"
+            d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+          />
+          <path
+            fill="#1976D2"
+            d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+          />
+        </svg>
+        Login / Sign Up with Gmail
+      </button>
+    } @else if (auth.isLoggedIn() && !auth.userLoggingOut()) {
+      |
+      <div class="relative">
+        <button
+          (click)="toggle()"
+          class="p-1 buttonStyle rounded-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          👨🏻
+        </button>
+        <ul
+          *ngIf="isOpen"
+          class="w-56 absolute z-10 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black/5"
+        >
+          <li
+            (click)="logout()"
+            class="cursor-pointer px-3 py-2 hover:bg-indigo-600 hover:text-white"
+          >
+            Logout
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col justify-start items-start">
+        <div class="text-sm">
+          {{ auth.userProfile()?.name }}
+        </div>
+        <div class="text-xs">
+          {{ auth.userProfile()?.email }}
+        </div>
+      </div>
+    } @else {
+      <div class="flex justify-start items-center gap-2">
+        <span class="text-red-500">
+          <svg
+            class="animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="currentColor"
+          >
+            <path
+              d="M480-280v-400q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"
+            />
+          </svg>
+        </span>
+        <span> Logging Out... </span>
+      </div>
+    }
+  </div>
+<div class="relative flex lg:hidden">
+        <button
+          (click)="toggleMenuMobile()"
+          class="p-1 buttonStyle rounded-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          👨🏻
+        </button>
+        <ul
+          *ngIf="isOpenMobile"
+          class="w-80 p-4 absolute z-10 right-0 mt-10 max-h-80 overflow-auto rounded-md bg-white text-sm shadow-lg ring-1 ring-black/5"
+        >
+        <div class="flex flex-col justify-start items-start pb-2 border-b-2 border-gray-200">
+        <div class="text-sm">
+          {{ auth.userProfile()?.name }}
+        </div>
+        <div class="text-xs">
+          {{ auth.userProfile()?.email }}
+        </div>
+      </div>
+        <div
+      *ngIf="auth.userToken() && usage.usage() as u"
+      class="text-xs text-gray-600 my-2 "
+    >
+      Requests left today:
+      <span class="font-bold text-orange-600">{{ u.remaining }}</span> /
+      {{ u.limit }} (free tier)
+    </div>
+    <button
+      class="px-4 mb-2 buttonStyle rounded-l-full rounded-r-full text-base transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 bg-orange-500 text-white"
+    >
+      Upgrade
+    </button>
+        <li class="px-3 py-2 hover:bg-indigo-600 hover:text-white">Docs</li>
+        <li class="px-3 py-2 hover:bg-indigo-600 hover:text-white">Pricing</li>
+          <li
+            (click)="logout()"
+            class="cursor-pointer px-3 py-2 hover:bg-indigo-600 hover:text-white"
+          >
+            Logout
+          </li>
+        </ul>
+      </div>
+</div>

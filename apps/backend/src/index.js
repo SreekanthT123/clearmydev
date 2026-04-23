@@ -1,5 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
+
+import { requireEnv } from "./config/env.js";
+
+requireEnv("OPENAI_API_KEY");
+requireEnv("MONGO_URI");
+requireEnv("JWT_SECRET");
+requireEnv("GOOGLE_CLIENT_ID");
+requireEnv("GOOGLE_CLIENT_SECRET");
+
 import express from "express";
 import cors from "cors";
 import explainErrorRoutes from "./routes/errors.route.js";
@@ -14,13 +23,17 @@ import { connectDB } from "./config/db.js";
 import { protect } from "./middleware/auth.middleware.js";
 import passport from "passport";
 import { configurePassport } from "./config/passport.js";
-import { fail } from "./utils/response.js"
+import { fail } from "./utils/response.js";
 await connectDB();
 configurePassport();
 
 const app = express();
 
 app.use(cors());
+// app.use(cors({
+//   origin: "https://your-netlify-url.netlify.app",
+//   credentials: true
+// }));
 app.use(express.json({ limit: "50kb" }));
 app.use(passport.initialize());
 app.use("/api", aiLimiter);
@@ -31,8 +44,7 @@ app.use("/api/incidents", protect, incidentsRoutes);
 app.use("/api/json", protect, jsonRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/usage", usageRoutes);
-
-
+app.set('trust proxy', 1);
 app.get("/health", (_, res) => {
   res.json({ status: "ok" });
 });

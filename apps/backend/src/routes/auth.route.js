@@ -73,9 +73,9 @@ router.get(
 );
 
 router.get("/me", protect, async (req, res) => {
-  console.log("request",req.usedId)
+  console.log("request", req.usedId);
   const user = await User.findById(req.usedId).select("-password");
-  console.log("user details",user)
+  console.log("user details", user);
   if (!user) {
     return res.status(404).json({ error: "User not found" });
   }
@@ -85,7 +85,7 @@ router.get("/me", protect, async (req, res) => {
     name: user.name,
     email: user.email,
     picture: user.picture,
-    usageCount: user.usageCount
+    usageCount: user.usageCount,
   });
 });
 

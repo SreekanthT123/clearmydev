@@ -1,0 +1,43 @@
+  <div class="flex items-center flex-col lg:flex-row  px-8 w-full justify-between">
+    <div class="p-8 lg:pr-16 w-full lg:w-[50%] flex flex-col gap-8 justify-center lg:justify-start items-center lg:items-start">
+      <div class="flex items-center gap-4 justify-start">
+        <div><img src="logo1.svg" alt="" width="100" /></div>
+        <div>
+          <h1 class="text-3xl lg:text-7xl font-semibold text-gray-900">
+            ClearMy<span class="text-[#F5702F]">Dev</span>
+          </h1>
+          <div class="text-sm lg:text-xl pl-2 text-[#329253]">
+            When your code talks nonsense, we translate.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xl lg:text-3xl text-center lg:text-left">
+          A
+          <span
+            class="text-[#329253] font-semibold lg:leading-[60px] lg:underline underline-offset-8"
+            >developer productivity</span
+          >
+          platform that explains technical problems in plain English.
+        </div>
+        <div class="text-xl lg:text-3xl mt-8 text-center lg:text-left">
+          <span
+            class="text-[#F5702F] font-semibold lg:leading-[60px] lg:underline underline-offset-8"
+            >Paste errors, logs, diffs, or incidents</span
+          >
+          and instantly understand what happened and what to do next.
+        </div>
+      </div>
+      <div>
+        <button (click)="onTryToolClick()"
+          class="px-8 rounded-l-full rounded-r-full text-lg bg-blue-600 text-white disabled:bg-blue-300 buttonStyle disabled:cursor-not-allowed transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+        >
+          Try a tool
+        </button>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-[50%] pb-8 pt-4">
+     <ng-content select="[appcarousal]"></ng-content>
+    </div>
+  </div>

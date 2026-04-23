@@ -1,0 +1,14 @@
+<div class="fixed bottom-4 right-4 z-50 flex flex-col gap-3 w-80">
+  <div
+    *ngFor="let toast of store.toasts()"
+    class="rounded-xl shadow-lg px-4 py-3  flex justify-between items-center animate-in slide-in-from-right duration-300"
+    [ngClass]="{
+      'bg-green-100  border-green-500 text-green-600': toast.type === 'success',
+      'bg-red-100  border-red-500 text-red-600': toast.type === 'error',
+      'bg-sky-100  border-sky-500 text-sky-600': toast.type === 'info',
+    }"
+  >
+    <span>{{ toast.message }}</span>
+    <button class="ml-3 font-bold" (click)="store.dismiss(toast.id)">×</button>
+  </div>
+</div>

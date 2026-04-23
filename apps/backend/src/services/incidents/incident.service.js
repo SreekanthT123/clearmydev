@@ -3,12 +3,12 @@ import { SYSTEM_PROMPT } from "./incident.prompt.js";
 
 export async function explainIncident(data) {
   const {
-    description,
-    logs = "",
-    errors = "",
-    changes = "",
-    context = "Not specified",
-    usedId=''
+   description,
+      logs,
+      errors,
+      changes,
+      context,
+      usedId,
   } = data;
 
   const userPrompt = `
@@ -44,7 +44,7 @@ export async function explainIncident(data) {
     const parsed = await runAI({
       systemPrompt: SYSTEM_PROMPT,
       userPrompt,
-      usedId
+      userId: usedId
     });
     return {
       summary: String(parsed.summary || ""),

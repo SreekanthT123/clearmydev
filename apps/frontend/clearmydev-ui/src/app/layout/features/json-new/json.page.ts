@@ -3,13 +3,14 @@ import { InputEditorSectionComponent } from './components/input-editor-section/i
 import { OutputViewerSectionComponent } from './components/output-viewer-section/output-viewer-section.component';
 import { JsonStore } from './json.store';
 import { JsonService } from './json.service';
+import { LayoutStore } from '../../layout/layout-store/layout.store';
 
 @Component({
   standalone: true,
   selector: 'app-json-new',
   imports: [InputEditorSectionComponent, OutputViewerSectionComponent],
   templateUrl: './json.page.html',
-  providers:[JsonStore,JsonService]
+  providers: [JsonStore, JsonService],
 })
 export class JsonNewComponent {
   jsonStore = inject(JsonStore);
@@ -17,15 +18,23 @@ export class JsonNewComponent {
   isLoading = this.jsonStore.loading;
   validationResult = this.jsonStore.validationResult;
   aiResult = this.jsonStore.aiResult;
-
+  layoutStore = inject(LayoutStore);
+  constructor() {
+    this.layoutStore.setShowAppDropdown(true);
+    this.layoutStore.setShowButtons(false);
+  }
   onJsonValidate(event: any) {
     this.jsonStore.validateJson(event);
   }
   onFixWithAi() {
-    console.log("emitted signal************")
+    console.log('emitted signal************');
     this.jsonStore.fixJsonWithAI();
   }
-  reset(){
+  reset() {
     this.jsonStore.reset();
+  }
+  ngOnDestroy() {
+    this.layoutStore.setShowAppDropdown(false);
+    this.layoutStore.setShowButtons(true);
   }
 }

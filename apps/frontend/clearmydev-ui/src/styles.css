@@ -9,3 +9,16 @@ body {
   color: var(--text-color);
   font-family: "Space Grotesk", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
+/* *{
+  cursor: none;
+} */
+/* input, textarea, select {
+  cursor: text !important;
+}
+
+button, a, [role="button"], .clickable {
+  cursor: pointer !important;
+} */

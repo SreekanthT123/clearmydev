@@ -15,7 +15,7 @@ export class OauthSuccessComponent implements OnInit {
     const token = this.route.snapshot.queryParamMap.get('token');
     if(token){
       this.auth.login(token);
-      this.router.navigate(['/layout'])
+      this.router.navigate(['/landing'])
     }
     else{
       this.router.navigate(['/'])

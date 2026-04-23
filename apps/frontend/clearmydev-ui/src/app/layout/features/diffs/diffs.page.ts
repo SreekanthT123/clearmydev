@@ -3,12 +3,13 @@ import { ExplainDiffService } from './diffs.service';
 import { DiffInputComponent } from './components/diff-input/diff-input.component';
 import { DiffOutputComponent } from './components/diff-output/diff-output.component';
 import { DiffsStore } from './diffs.store';
+import { LayoutStore } from '../../layout/layout-store/layout.store';
 
 @Component({
   standalone: true,
   imports: [DiffInputComponent, DiffOutputComponent],
   templateUrl: './diffs.page.html',
-  providers:[ExplainDiffService,DiffsStore]
+  providers: [ExplainDiffService, DiffsStore],
 })
 export class DiffsPage {
   title = 'explain-my-diif-ui';
@@ -16,8 +17,16 @@ export class DiffsPage {
   isLoading = this.diffsStore.loading;
   explanation = this.diffsStore.result;
   errormessage = this.diffsStore.error;
-
+  layoutStore = inject(LayoutStore);
+  constructor() {
+    this.layoutStore.setShowAppDropdown(true);
+    this.layoutStore.setShowButtons(false);
+  }
   onSubmit(data: { before: string; after: string; context: string }) {
     this.diffsStore.explainDiff(data.before, data.after, data.context);
+  }
+  ngOnDestroy() {
+    this.layoutStore.setShowAppDropdown(false);
+    this.layoutStore.setShowButtons(true);
   }
 }

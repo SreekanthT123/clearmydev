@@ -44,18 +44,27 @@
     Data exceeds limit(>10k chars)
   </div>
   }
+  <!-- give multi line placeholder with text and an exaple of error -->
   <textarea
     [disabled]="isLoading"
     rows="10"
     class="w-full h-full outline-none p-4 font-mono text-sm border"
-    placeholder="Paste before text here..."
+    placeholder="Paste before text here...
+    
+    For example:
+    const x = 5;
+    console.log(x);"
     [(ngModel)]="beforetext"
   ></textarea>
   <textarea
     [disabled]="isLoading"
     rows="10"
     class="w-full h-full outline-none p-4 font-mono text-sm border rounded-b-lg mt-2"
-    placeholder="Paste after text here..."
+    placeholder="Paste after text here...
+    
+    For example:
+    const x = 10;
+    console.log(x);"
     [(ngModel)]="aftertext"
   ></textarea>
 </div>

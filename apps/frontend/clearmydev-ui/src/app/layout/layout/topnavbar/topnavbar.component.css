@@ -1,0 +1,20 @@
+.buttonStyle {
+  border: 2px solid black;
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 0px black;
+  position: relative;
+}
+.logo {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: 
+    opacity 180ms ease,
+    transform 180ms ease;
+  pointer-events: none;
+}
+
+.logo-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}

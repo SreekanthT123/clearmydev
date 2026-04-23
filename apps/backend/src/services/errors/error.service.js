@@ -37,5 +37,6 @@ export async function explainError(errortext, framework,userId) {
     cause: result.cause || "",
     check: result.check || "",
     mistake: result.mistake || "",
+    example_error: result.example_code || "",
   };
 }

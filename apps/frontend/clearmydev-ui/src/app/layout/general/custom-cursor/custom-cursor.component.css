@@ -1,0 +1,29 @@
+:host {
+  pointer-events: none;
+}
+
+.cursor,
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor {
+  width: 12px;
+  height: 12px;
+  background: #F5702F;
+  border-radius: 50%;
+}
+
+.cursor-follower {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #F5702F;
+  border-radius: 50%;
+  opacity: 0.5;
+  transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
+}
