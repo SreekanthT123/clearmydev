@@ -6,6 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LayoutStore } from '../layout-store/layout.store';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-topnavbar',
@@ -62,7 +63,7 @@ export class TopnavbarComponent {
     return this.scrollY() > 100;
   });
   login(){
-    window.location.href = 'http://localhost:3000/api/auth/google';
+    window.location.href = environment.authUrl;
   }
   logout() {
     this.auth.logout();

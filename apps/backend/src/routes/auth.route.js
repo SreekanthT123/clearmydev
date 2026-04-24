@@ -68,7 +68,7 @@ router.get(
       expiresIn: "1d",
     });
 
-    res.redirect(`http://localhost:7700/oauth-success?token=${token}`);
+    res.redirect(`https://clear-my-dev.netlify.app/oauth-success?token=${token}`);
   },
 );
 
