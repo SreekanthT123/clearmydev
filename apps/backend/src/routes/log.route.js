@@ -1,5 +1,5 @@
 import express from "express";
-import { explainLog } from "../services/logs/log.service.js";
+import { explainLog } from "../services/logs2/log.service.js";
 import { ok, fail } from "../utils/response.js";
 
 const router = express.Router();
