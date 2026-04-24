@@ -1,0 +1,16 @@
+
+<div class="h-[calc(100vh-80px)] w-screen flex flex-col lg:flex-row">
+  <div class="w-full lg:w-1/2 border-r p-4">
+    <app-log-input
+      (submitLogs)="onSubmit($event)"
+      [isLoading]="isLoading()"
+    ></app-log-input>
+  </div>
+  <div class="w-full lg:w-1/2 border-r p-4">
+    <app-log-output
+      [error]="errormessage()"
+      [isLoading]="isLoading()"
+      [result]="explanation()"
+    ></app-log-output>
+  </div>
+</div>

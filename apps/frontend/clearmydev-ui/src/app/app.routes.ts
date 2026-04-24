@@ -50,7 +50,7 @@ export const routes: Routes = [
       },
       {
         path: 'logs',
-        loadComponent: () => import('./layout/features/logs/log.page').then(c => c.LogsPage),
+        loadComponent: () => import('./layout/features/logs2/log.page').then(c => c.LogsPage),
         canActivate: [authGuard],
       },
       {
