@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login-oauth',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './login-oauth.component.css',
 })
 export class LoginOauthComponent {
-  loginWithGoogle() {
-    window.location.href = 'http://localhost:3000/api/auth/google';
+ loginWithGoogle() {
+    window.location.href = environment.authUrl;
   }
 }
