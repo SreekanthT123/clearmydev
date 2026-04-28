@@ -1,165 +1,355 @@
-# ExplainMyDiff
+# 🚀 ClearMyDev
 
-**ExplainMyDiff** helps developers understand what actually changed between two versions of text and which changes might matter.
+**ClearMyDev** is an AI-powered developer productivity platform that helps developers understand technical problems faster.  
+Instead of wasting time searching docs, forums, and random threads, developers can paste real debugging data and get clear, actionable explanations in plain English.
 
-It focuses on **signal over noise** and is designed to reduce confusion during debugging, reviews, and incident analysis.
-
----
-
-## Problem
-
-When looking at diffs, developers often face:
-- Large changes mixed with noise
-- Formatting-only differences hiding real changes
-- Uncertainty about which change could cause issues
-- Cognitive overload during reviews or incidents
-
-ExplainMyDiff exists to answer one simple question:
-
-> “What actually changed here, and what should I care about?”
+> **When your code talks nonsense, we translate.**
 
 ---
 
-## What ExplainMyDiff Does
+# 🌐 Live Demo
 
-- Accepts two versions of text:
-  - **Before**
-  - **After**
-- Optional high-level context (Backend, Frontend, Config, etc.)
-- Produces a structured explanation:
-  - Summary of changes
-  - Key meaningful differences
-  - Potential risk areas (if any)
-  - First thing to verify after the change
-- Ignores formatting-only or insignificant differences
-- Admits uncertainty when no meaningful change exists
-- Never generates code or guesses intent
+- **Frontend:** https://clear-my-dev.netlify.app  
+- **Backend API:** https://clearmydev-api.onrender.com
 
 ---
 
-## What ExplainMyDiff Does NOT Do
+# 📌 Why ClearMyDev?
 
-This is intentional.
+Modern development is full of friction:
 
-ExplainMyDiff does **not**:
-- Perform code reviews
-- Judge correctness
-- Suggest refactors
-- Generate or modify code
-- Parse programming languages
-- Guarantee impact
-- Replace PR reviews or human judgment
+- Confusing error messages
+- Massive logs
+- Risky code/config changes
+- Production incidents with partial context
+- Tiny JSON mistakes that break APIs
 
-It explains **impact**, not **intent**.
+ClearMyDev solves these daily developer frustrations using AI.
 
 ---
 
-## How It Works
+# ✨ Core Features
 
-1. Developer pastes the **Before** and **After** versions
-2. Optional context is selected
-3. Input is sent to the backend API
-4. An AI model explains the differences using strict rules
-5. The frontend renders a calm, readable explanation
+## 🔹 1. ExplainMyError
+Paste any error or stack trace and get:
 
-The AI output is constrained to a fixed JSON schema.
-
----
-
-## Output Format
-
-ExplainMyDiff always returns the following fields:
-
-- **summary** – High-level explanation of what changed
-- **key_changes** – Plain-English description of important differences
-- **risk_areas** – Potential areas of concern (empty if none)
-- **what_to_check** – First thing to verify (empty if none)
-
-All values are strings. Empty strings are valid.
+- Plain-English meaning
+- Most likely cause
+- First thing to check
+- Common mistake
+- Minimal reproduction example
 
 ---
 
-## Context Options
+## 🔹 2. ExplainMyLog
+Paste raw logs and get:
 
-Context helps bias interpretation but does not enforce assumptions.
-
-Available contexts:
-- Backend
-- Frontend
-- Config
-- API
-- Other / Not sure
-
-Default: **Backend**
+- Summary of what happened
+- Suspicious patterns
+- Errors / warnings detected
+- Where to focus first
 
 ---
 
-## Tech Stack
+## 🔹 3. ExplainMyDiff
+Compare before vs after changes:
 
-### Frontend
-- Angular (standalone components)
+- Important differences highlighted
+- Possible risks introduced
+- What should be verified next
+
+Useful for deployments, PR reviews, config changes.
+
+---
+
+## 🔹 4. ExplainMyIncident
+Describe production issues with logs/errors and get:
+
+- Likely cause
+- Business impact
+- Next investigation step
+
+---
+
+## 🔹 5. FixMyJSON
+Paste broken JSON and get:
+
+- Validation result
+- Syntax issue identified
+- Auto-formatted JSON
+- Cleaner payload structure
+
+---
+
+# 🏗️ Tech Stack
+
+## Frontend
+- Angular
+- TypeScript
 - Tailwind CSS
+- NgRx Signal Store
+- Angular Router
+- HTTP Interceptors
 
-### Backend
+## Backend
 - Node.js
-- Express
+- Express.js
 - OpenAI API
-- Environment-based configuration
+- JWT Authentication
+- Google OAuth (Passport.js)
+
+## Database
+- MongoDB Atlas
+
+## Deployment
+- Netlify (Frontend)
+- Render (Backend)
 
 ---
 
-##  Local Setup
+# 🔐 Authentication
 
-### Backend
-- cd Backend
-- npm install
-- npm run dev
+ClearMyDev uses **Google OAuth + JWT** authentication.
 
-### Frontend
-- cd Frontend/explain-my-diff-ui
-- npm install
-- ng serve
+Features:
 
+- Secure Google login
+- Protected API routes
+- Session persistence
+- Auto logout on expired token
 
 ---
 
-## Testing
+# 📊 SaaS Features Implemented
 
-Manual testing scenarios:
-- Small meaningful change
-- Large diff with noise
-- Formatting-only changes
-- Identical inputs
-- Garbage input
-- Backend unavailable
+This is not just a tool app — it includes real SaaS patterns:
 
-Expected behavior:
-- No crashes
-- Honest uncertainty
-- No false risk alarms
-- Predictable output structure
+- User accounts
+- Daily free-tier request limits
+- Usage tracking
+- Usage counter UI
+- Rate limiting
+- Input protection
+- Standardized API responses
+- Secure environment config
+- Production deployment ready
 
 ---
 
-## Success Criteria
+# ⚙️ Local Setup
 
-ExplainMyDiff is successful if:
-- Developers quickly understand what changed
-- Noise is filtered out
-- Risk is highlighted conservatively
-- Output feels calm and trustworthy
-- The tool reduces cognitive load
+## 1️⃣ Clone Repo
+
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+
+## 2️⃣ Backend Setup
+
+```bash
+cd apps/backend
+npm install
+```
+
+- Create a .env file inside apps/backend:
+
+```bash
+OPENAI_API_KEY=your_key
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+PORT=3000
+```
+
+- Run backend:
+```bash
+npm run dev
+```
+
+- Backend runs on:
+```bash
+http://localhost:3000
+```
+
+## 3️⃣ Frontend Setup
+```bash
+cd apps/frontend/clearmydev-ui
+npm install
+npm start
+```
+
+- Frontend runs on:
+```bash
+http://localhost:7700
+```
 
 ---
 
-## Philosophy
+# 📂 Folder Structure
 
-ExplainMyDiff explains changes — it does not judge them.
+```bash
+root/
+│
+├── apps/
+│   ├── backend/                    # Node.js + Express API
+│   │   ├── src/
+│   │   │   ├── config/            # DB, auth, environment configs
+│   │   │   ├── controllers/       # Route controllers
+│   │   │   ├── middleware/        # Auth, rate-limit, error handlers
+│   │   │   ├── models/            # MongoDB schemas
+│   │   │   ├── routes/            # API routes
+│   │   │   ├── services/          # AI/business logic
+│   │   │   └── index.js           # App entry point
+│   │   ├── .env.example
+│   │   └── package.json
+│   │
+│   └── frontend/
+│       └── clearmydev-ui/         # Angular application
+│           ├── src/
+│           │   ├── app/
+│           │   │   ├── core/      # Core services, guards, interceptors
+│           │   │   ├── shared/    # Reusable UI components
+│           │   │   ├── features/  # Feature modules/pages
+│           │   │   ├── store/     # Signal Store / state management
+│           │   │   └── app.routes.ts
+│           │   ├── environments/  # Dev / prod configs
+│           │   └── styles.css
+│           ├── angular.json
+│           └── package.json
+│
+├── README.md
+├── package.json
+└── .gitignore
+```
 
-- Clarity beats confidence.
-- Honesty beats cleverness.
 ---
 
-### 📄 License
+# 🌍 Environment Configuration
 
-- This project is intended for learning, experimentation, and portfolio use.
+## Development
+
+Uses Angular proxy config (proxy.conf.json):
+```bash
+{
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
+```
+
+## Production
+
+Uses src/environments/environment.prod.ts
+```bash
+export const environment = {
+  production: true,
+  apiBaseUrl: "https://your-render-url.onrender.com/api",
+  authUrl: "https://your-render-url.onrender.com/api/auth/google"
+};
+```
+---
+
+# 🚀 Deployment
+
+## Frontend — Netlify
+- Connect GitHub repo
+- Base directory: apps/frontend/clearmydev-ui
+- Build command: ng build
+- Publish directory: dist/clearmydev-ui/browser
+
+## Backend — Render
+- Create Web Service
+- Root directory: apps/backend
+- Build command: npm install
+- Start command: node src/index.js
+
+Set environment variables in Render dashboard.
+
+---
+
+# 🔐 Security Features
+
+- Google OAuth authentication
+- JWT protected routes
+- Rate limiting
+- Input size protection
+- Helmet security headers
+- Environment variable protection
+- Usage-based access control
+
+---
+
+# 📊 Usage Control
+
+Free-tier SaaS protections included:
+
+- Daily request limits per user
+- Usage tracking in MongoDB
+- Remaining usage shown in UI
+- Auto reset on next day
+
+---
+
+# 🧠 AI Prompt Engineering
+
+Each tool uses custom structured prompts designed for:
+
+- Plain-English explanations
+- High signal responses
+- Minimal hallucination
+- Actionable next steps
+- Predictable JSON output
+
+---
+
+# 📈 Future Improvements
+
+Planned roadmap:
+
+- Paid subscriptions
+- Team workspaces
+- Saved history
+- Analytics dashboard
+- Dark mode enhancements
+- More debugging tools
+- Multi-model AI support
+
+---
+
+# 📜 Legal Pages
+
+Included for production readiness:
+
+- Privacy Policy
+- Terms of Use
+
+---
+
+# 👨‍💻 Author
+
+Built by **Sreekanth T** as a flagship full-stack SaaS portfolio project.
+
+---
+
+# ⭐ Why This Project Matters
+
+ClearMyDev demonstrates real-world engineering skills beyond CRUD apps:
+
+- Full-stack architecture
+- Angular state management
+- Node.js API design
+- OAuth authentication
+- MongoDB integration
+- AI product development
+- SaaS business logic
+- Production deployment
+
+---
+
+# 💬 Feedback
+
+If you found this project useful or interesting, feel free to star the repo ⭐
